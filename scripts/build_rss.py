@@ -5,8 +5,8 @@ import os, calendar, hashlib
 OUT_PATH = "rss/index.xml"
 BASE_URL = "https://en.wikipedia.org/wiki/Portal:Current_events"
 
-# Compute two days ago in UTC
-target = (datetime.now(timezone.utc) - timedelta(days=2)).replace(hour=0, minute=0)
+# Compute one day ago in UTC
+target = (datetime.now(timezone.utc) - timedelta(days=1)).replace(hour=0, minute=0)
 slug = f"{target.year}_{calendar.month_name[target.month]}_{target.day}"
 page_url = f"{BASE_URL}/{slug}"
 
@@ -18,9 +18,9 @@ guid = hashlib.sha1(page_url.encode()).hexdigest()
 rss = f"""<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
 <channel>
-<title>Wikipedia Current Events (2 days ago, UTC)</title>
-<link>https://github.com/CodebergIsBetter/Wikipedia_Current_Events/tree/main</link>
-<description>Daily RSS linking to Wikipedia Current Events page from two days prior (UTC).</description>
+<title>Wikipedia Current Events (1 day ago, UTC)</title>
+<link>https://github.com/m3rone/Wikipedia_Current_Events/</link>
+<description>Daily RSS linking to Wikipedia Current Events page from one day prior (UTC).</description>
 <lastBuildDate>{datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S GMT")}</lastBuildDate>
 <pubDate>{pub_date}</pubDate>
 <generator>Python</generator>
@@ -40,4 +40,3 @@ with open(OUT_PATH, "w", encoding="utf-8") as f:
     f.write(rss)
 
 print(f"[ok] RSS feed created at {OUT_PATH} → {page_url}")
-

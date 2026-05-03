@@ -1,4 +1,4 @@
-name: Build RSS (Wikipedia Current Events, 2 days ago UTC)
+name: Build RSS (Wikipedia Current Events, 1 day ago UTC)
 
 on:
   workflow_dispatch: {}
@@ -35,4 +35,3 @@ jobs:
           else
             echo "No changes."
           fi
-
